@@ -28,10 +28,7 @@ def get_vector_store():
         pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
         index_name = "podcast-rag"  # Make sure this matches your Pinecone index name
 
-        _vector_store = PineconeVectorStore(
-            index_name=index_name,
-            embedding=embeddings
-        )
+        _vector_store = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     return _vector_store
 
 
@@ -93,6 +90,6 @@ Question: {question}
 """
 
     # 5. Get answer
-    response = llm.predict(prompt)
+    response = llm.invoke(prompt).content
 
     return response, docs, filter_used
