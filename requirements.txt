@@ -7,3 +7,5 @@ python-dotenv
 streamlit
 langchain-community
 langchain-openai
+pinecone-client
+langchain-pinecone

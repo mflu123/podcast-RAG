@@ -2,9 +2,9 @@ import os
 import re
 from dotenv import load_dotenv
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_pinecone import PineconeVectorStore
 from langchain.chat_models import ChatOpenAI
-import chromadb
+from pinecone import Pinecone
 
 # Load environment variables
 load_dotenv()
@@ -17,24 +17,20 @@ _llm = None
 def get_vector_store():
     global _vector_store
     if _vector_store is None:
-        # Define the path to the existing database
-        # Assuming this file is in src/, models is in ../models
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        persist_dir = os.path.join(current_dir, "../models/tal_chroma")
-
-        print(f"Loading ChromaDB from: {persist_dir}")
+        print("Connecting to Pinecone...")
 
         embeddings = OpenAIEmbeddings(
             model="text-embedding-3-small",
             openai_api_key=os.getenv("OPENAI_API_KEY"),
         )
 
-        client = chromadb.PersistentClient(path=persist_dir)
+        # Initialize Pinecone
+        pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+        index_name = "podcast-rag"  # Make sure this matches your Pinecone index name
 
-        _vector_store = Chroma(
-            client=client,
-            collection_name="tal_collection",
-            embedding_function=embeddings,
+        _vector_store = PineconeVectorStore(
+            index_name=index_name,
+            embedding=embeddings
         )
     return _vector_store
 
