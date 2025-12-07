@@ -1,3 +1,4 @@
 data/transcripts_full.json
 .env
 models/tal_chroma/
+.streamlit/secrets.toml

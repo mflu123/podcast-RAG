@@ -4,3 +4,6 @@ chromadb
 tiktoken
 jq
 python-dotenv
+streamlit
+langchain-community
+langchain-openai
