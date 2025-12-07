@@ -1,9 +1,9 @@
 import os
 import re
 from dotenv import load_dotenv
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from pinecone import Pinecone
 
 # Load environment variables
