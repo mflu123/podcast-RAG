@@ -45,14 +45,35 @@ def get_llm():
     return _llm
 
 
+def classify_intent(question: str):
+    llm = get_llm()
+    prompt = f"""Classify the user's input into one of these categories: GREETING, PODCAST_QUERY, GENERAL_KNOWLEDGE.
+    
+    - GREETING: Simple salutations like "hello", "hi", "good morning".
+    - PODCAST_QUERY: Questions specifically about "This American Life" podcast, its episodes, stories, or themes.
+    - GENERAL_KNOWLEDGE: Questions unrelated to the podcast (e.g., math, history, coding, general facts).
+
+    Input: {question}
+    
+    Respond ONLY with the category name.
+    """
+    return llm.invoke(prompt).content.strip().upper()
+
+
 def ask_podcast_rag(question: str):
-    # 0. Handle simple greetings
-    if question.lower().strip().strip("!?.") in ["hello", "hi", "hey", "greetings"]:
+    # 0. Classify intent using LLM
+    intent = classify_intent(question)
+
+    if "GREETING" in intent:
         return (
             "Hello! I'm here to help you explore 'This American Life' transcripts. Ask me a question about an episode!",
             [],
             None,
         )
+
+    if "GENERAL_KNOWLEDGE" in intent:
+        llm = get_llm()
+        return llm.invoke(question).content, [], None
 
     vector_store = get_vector_store()
     llm = get_llm()
