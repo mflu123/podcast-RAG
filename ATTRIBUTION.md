@@ -2,7 +2,7 @@
 
 ## Data Source
 
-If you have made use of this data in your project/paper, please cite our paper: "Speech Recognition and Multi-Speaker Diarization of Long Conversations".
+
 
 **(APA style)**
 Mao, H. H., Li, S., McAuley, J., & Cottrell, G. (2020). Speech Recognition and Multi-Speaker Diarization of Long Conversations. INTERSPEECH.
@@ -28,3 +28,6 @@ Mao, H. H., Li, S., McAuley, J., & Cottrell, G. (2020). Speech Recognition and M
 - **ChromaDB**: For vector storage and retrieval.
 - **OpenAI**: For embeddings and LLM generation.
 - **TikToken**: For token counting.
+- **Streamlit**: For the web application interface.
+- **Pinecone**: For cloud vector storage.
+

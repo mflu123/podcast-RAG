@@ -26,7 +26,7 @@ def get_vector_store():
 
         # Initialize Pinecone
         pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-        index_name = "podcast-rag"  # Make sure this matches your Pinecone index name
+        index_name = "podcast-rag"
 
         _vector_store = PineconeVectorStore(index_name=index_name, embedding=embeddings)
     return _vector_store
@@ -47,12 +47,11 @@ def get_llm():
 
 def classify_intent(question: str):
     llm = get_llm()
-    prompt = f"""Classify the user's input into one of these categories: GREETING, PODCAST_QUERY, GENERAL_KNOWLEDGE.
+    prompt = f"""Classify the user's input into one of these categories: GREETING, SPECIFIC_EPISODE_QUERY, GENERAL_KNOWLEDGE.
     
     - GREETING: Simple salutations like "hello", "hi", "good morning".
-    - PODCAST_QUERY: Questions specifically about "This American Life" podcast, its episodes, stories, or themes.
-    - GENERAL_KNOWLEDGE: Questions unrelated to the podcast (e.g., math, history, coding, general facts).
-
+    - SPECIFIC_EPISODE_QUERY: Questions asking for specific details, stories, quotes, or content found within the episode transcripts. Examples: "What happened in episode 4?", "Stories about love", "What did Ira say about...".
+    - GENERAL_KNOWLEDGE: General questions about the podcast (host, genre, history) that don't require transcript search, OR questions unrelated to the podcast. Examples: "What is This American Life?", "Who is Ira Glass?", "What is 2+2?".
     Input: {question}
     
     Respond ONLY with the category name.
