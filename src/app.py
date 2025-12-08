@@ -1,6 +1,6 @@
 import streamlit as st
-import os
-from src.rag_engine import ask_podcast_rag
+
+from rag_engine import ask_podcast_rag
 
 st.set_page_config(page_title="Podcast RAG Chatbot", page_icon="🎙️")
 
