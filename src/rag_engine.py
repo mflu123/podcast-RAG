@@ -65,11 +65,8 @@ def ask_podcast_rag(question: str):
     intent = classify_intent(question)
 
     if "GREETING" in intent:
-        return (
-            "Hello! I'm here to help you explore 'This American Life' transcripts. Ask me a question about an episode!",
-            [],
-            None,
-        )
+        llm = get_llm()
+        return llm.invoke(question).content, [], None
 
     if "GENERAL_KNOWLEDGE" in intent:
         llm = get_llm()
