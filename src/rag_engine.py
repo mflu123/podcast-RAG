@@ -46,6 +46,14 @@ def get_llm():
 
 
 def ask_podcast_rag(question: str):
+    # 0. Handle simple greetings
+    if question.lower().strip().strip("!?.") in ["hello", "hi", "hey", "greetings"]:
+        return (
+            "Hello! I'm here to help you explore 'This American Life' transcripts. Ask me a question about an episode!",
+            [],
+            None,
+        )
+
     vector_store = get_vector_store()
     llm = get_llm()
 
