@@ -93,7 +93,11 @@ def ask_podcast_rag(question: str):
     # 3. Format context
     context = ""
     for i, doc in enumerate(docs):
-        context += f"\nDocument {i + 1} (Episode {doc.metadata.get('episode')}):\n{doc.page_content}\n"
+        meta = doc.metadata
+        context += f"\nDocument {i + 1} (Episode {meta.get('episode')}, Act {meta.get('act')}):\n"
+        context += f"Speakers: {meta.get('speakers', 'Unknown')}\n"
+        context += f"Roles: {meta.get('roles', 'Unknown')}\n"
+        context += f"Content: {doc.page_content}\n"
 
     # 4. Build prompt
     prompt = f"""You are a helpful assistant that answers questions strictly based on podcast transcripts.
