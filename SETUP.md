@@ -33,19 +33,22 @@ https://podcast-rag-2kvzffxnrjnzmfqbbcb6rf.streamlit.app/
 
 To run the project locally, make sure to read the Quick Start section in the README.md first. 
 
-### 1. Run the Chatbot Application 
-The main interface is a Streamlit web app.
-```bash
-streamlit run app.py
-```
-This will launch the chatbot in your default web browser.
 
-### 2. Run Notebooks
+
+### 1. Run Notebooks
 
 For data ingestion, analysis, or evaluation:
 1. Navigate to the `notebooks/` directory.
 2. Open `create_database.ipynb` to process transcripts and create the vector database (Local ChromaDB or Pinecone).
 3. Open `json.ipynb` to run the evaluation suite and test the RAG pipeline programmatically.
+
+### 2. Run the Chatbot Application 
+Once database is created, if you want to run locally:
+The main interface is a Streamlit web app.
+```bash
+streamlit run app.py
+```
+This will launch the chatbot in your default web browser.
 
 ## Testing for Graders
 To verify the system functionality and API functionality:
