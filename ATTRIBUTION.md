@@ -2,7 +2,10 @@
 
 ## Data Source
 
+The transcripts were sourced from kaggle at the following link: 
+https://www.kaggle.com/datasets/shuyangli94/this-american-life-podcast-transcriptsalignments?resource=download
 
+The full citation is below:
 
 **(APA style)**
 Mao, H. H., Li, S., McAuley, J., & Cottrell, G. (2020). Speech Recognition and Multi-Speaker Diarization of Long Conversations. INTERSPEECH.
@@ -25,7 +28,7 @@ Mao, H. H., Li, S., McAuley, J., & Cottrell, G. (2020). Speech Recognition and M
 ## Libraries Used
 
 - **LangChain**: For building the RAG pipeline.
-- **ChromaDB**: For vector storage and retrieval.
+- **ChromaDB**: For vector storage and retrieval locally.
 - **OpenAI**: For embeddings and LLM generation.
 - **TikToken**: For token counting.
 - **Streamlit**: For the web application interface.
